@@ -42,7 +42,7 @@ public class User {
 
 
 //    SELF , GOOGLE , GITHUB
-
+    @Enumerated
     private Providers provider = Providers.SELF;
     private  String providerUserId;
 
