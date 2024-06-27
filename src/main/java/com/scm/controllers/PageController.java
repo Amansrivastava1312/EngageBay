@@ -3,10 +3,15 @@ package com.scm.controllers;
 
 import com.scm.entities.User;
 import com.scm.forms.UserForm;
+import com.scm.helpers.Message;
+import com.scm.helpers.MessageType;
 import com.scm.services.UserService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,19 +62,25 @@ public class PageController {
         UserForm userForm = new UserForm();
 //        userForm.setName("aman");
 //        userForm.setAbout("This is about section :  write something about yourself");
+
+
         model.addAttribute("userForm",userForm);
         return "register";
     }
 
+
+
     @RequestMapping(value = "/do-register" , method = RequestMethod.POST)
-    public String processRegister(@ModelAttribute UserForm userForm){
+    public String processRegister(@Valid @ModelAttribute UserForm userForm, BindingResult rBindingResult, HttpSession session){
         System.out.println("Processing registration");
         // fetch form data
         // UserForm
         System.out.println(userForm);
 
         // validate form data
-
+        if(rBindingResult.hasErrors()){
+            return "register";
+        }
 
 
 
@@ -90,7 +101,7 @@ public class PageController {
 //         .build();
 
 
-        User user = new User();
+        User user =  new User();
         user.setName(userForm.getName());
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
@@ -103,6 +114,10 @@ public class PageController {
 
         System.out.println("user saved :");
 
+        Message message = Message.builder().content("Registration successful! Thank you for signing up.").type(MessageType.green).build();
+
+
+        session.setAttribute("message",message);
 
 
 
