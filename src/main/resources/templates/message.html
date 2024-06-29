@@ -18,8 +18,11 @@
         />
     </svg>
     <span class="sr-only">Info</span>
-    <div>
+    <div class="ms-3 text-sm font-medium">
         <span data-th-text="*{content}"></span>
+        <div class="mt-4">
+            <a class="underline text-blue-500" href="/login">Click here to login</a>
+        </div>
     </div>
 
     <th:block th:text="${@sessionHelper.removeMessage()}"></th:block>
