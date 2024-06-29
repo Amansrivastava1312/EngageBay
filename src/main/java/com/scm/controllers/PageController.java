@@ -60,7 +60,7 @@ public class PageController {
     // this is showing login page
     @GetMapping("/login")
     public String login() {
-        return new String("login");
+        return "login";
     }
 
     @GetMapping("/register")
