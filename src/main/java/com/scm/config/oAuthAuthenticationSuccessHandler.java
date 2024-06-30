@@ -32,7 +32,7 @@ public class oAuthAuthenticationSuccessHandler implements AuthenticationSuccessH
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-            logger.info("oAuthAuthenticationSuccessHandler");
+        logger.info("oAuthAuthenticationSuccessHandler");
 
         DefaultOAuth2User user=(DefaultOAuth2User)authentication.getPrincipal();
         logger.info(user.getName());
