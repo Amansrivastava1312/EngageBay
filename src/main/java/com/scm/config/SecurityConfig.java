@@ -78,8 +78,8 @@ public class SecurityConfig {
 
                //
                formLogin.loginPage("/login");
-               formLogin.loginProcessingUrl("/authenticate");
-               formLogin.successForwardUrl("/user/profile");
+               formLogin.loginProcessingUrl("/authentication");
+               formLogin.defaultSuccessUrl("/user/profile");
                // formLogin.failureForwardUrl("/login?error=true");
                // formLogin.defaultSuccessUrl("/home");
                formLogin.usernameParameter("email");
